@@ -1,38 +1,34 @@
-# Instaapp
+# Pixora
 
-## Description :clipboard:
+## 📷 Description
 
-> Instaapp is an Instagram social media clone built with ReactJs hooks, contexts, and Firebase Cloud Firestore for the database. Features: login, register, like, comment
+**Pixora** is a full-featured Instagram clone built with **React**, **Firebase**, and **ImgBB** for image hosting. Users can register, log in (via email/password or Google), upload photos with captions, like posts, and comment — just like Instagram.
 
-## App Demo
+This project uses:
+- 🔥 Firebase for authentication and database (Firestore)
+- 🌐 Imgbb for free image hosting
+- 🎨 CSS Modules and custom themes
+- ⚛️ React Context and Hooks for state management
+- 🧩 React Router v5 for client-side routing
 
-![](shot/instaapp.png)
+---
+
+## 🚀 Demo
+
+<img src="shot/pixora.png" alt="Main UI" width="100%" />
 <br />
-<br />
 
-![](shot/Shot1.png)
-![](shot/Shot2.png)
+<img src="shot/shot1.png" alt="Upload UI" width="49%" />
+<img src="shot/shot2.png" alt="Profile UI" width="49%" />
 
-## Installation :wrench:
+---
 
-- Clone backend repo by running `git clone git@github.com:rifkiandriyanto/react-instaapp
+## 🛠 Installation
 
-### Setup
+### 🔧 Setup
 
-- `cd Instaap`
-- `yarn`
-- `yarn start`
-- It will be available at `localhost:3000`
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/RAJU3519/pixora.git
+   cd pixora
 
-## Built With :zap:
-
-1. React js
-2. Contect + React Hook
-3. Firebase
-4. Css
-
-## License
-
-[![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-
-- **[MIT license](http://opensource.org/licenses/mit-license.php)**
