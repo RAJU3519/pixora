@@ -1,3 +1,5 @@
+//Login.js
+
 import React, { useEffect, useState } from 'react';
 import '../style/Login.css';
 import { Link, useHistory } from 'react-router-dom';
@@ -51,7 +53,7 @@ export default function Login() {
     <div className='login'>
       <div className='loginContainer'>
         <Link to='/' className='link'>
-          <h1 className='loginLogo'>instaapp</h1>
+          <h1 className='loginLogo'>pixora</h1>
         </Link>
         <h1>Sign-in</h1>
 
@@ -90,9 +92,8 @@ export default function Login() {
         </button>
 
         <p>
-          Disclaimer: This is a fake social media platform called instaapp. If
-          you want to try this app without using your personal information use
-          email: <b>demotest@gmail.com</b> and <b>demotest</b> as password.
+          Disclaimer: This is a fake social media platform called Pixora...
+
         </p>
       </div>
     </div>

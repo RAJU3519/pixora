@@ -1,172 +1,151 @@
-import React, { useState } from 'react';
-import { db, storage } from '../components/firebase';
-import firebase from 'firebase';
-import '../style/Upload.css';
+// upload.js
+
+// Upload.js
+import React, { useState } from "react";
+import { db } from "../components/firebase";
+import { FieldValue } from "../components/firebase";
+//import uploadToImgbb from "../components/UploadImages";
+import "../style/Upload.css";
+import uploadToImgbb from "../components/UploadImages";
 
 export default function Upload({ user }) {
-  const [caption, setCaption] = useState('');
+  const [caption, setCaption] = useState("");
   const [image, setImage] = useState(null);
-  const [file, setFile] = useState(null);
-  const [showDelete, setshowDelete] = useState(false);
-  const [fileName, setFileName] = useState('');
-  const [progress, setProgress] = useState(0);
+  const [filePreview, setFilePreview] = useState(null);
+  const [showDelete, setShowDelete] = useState(false);
+  const [fileName, setFileName] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (e) => {
-    if (e.target.files[0]) {
-      setImage(e.target.files[0]);
-    }
-    setFile(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    if (!file) return;
 
-    var a = e.target.value.toString().split('\\');
-    var name = a[a.length - 1];
-    if (name.length > 20)
-      name =
-        name.split('.')[0].substring(0, 20) +
-        '....' +
-        name.split('.')[name.split('.').length - 1];
+    setImage(file);
+    setFilePreview(URL.createObjectURL(file));
+
+    let name = file.name;
+    if (name.length > 20) {
+      const ext = name.split(".").pop();
+      name = name.split(".")[0].substring(0, 20) + "...." + ext;
+    }
+
     setFileName(name);
-    setshowDelete(true);
+    setShowDelete(true);
   };
 
   const handleTrash = () => {
-    setshowDelete(false);
+    setShowDelete(false);
     setImage(null);
-    setFileName('');
-    setFile(null);
+    setFileName("");
+    setFilePreview(null);
   };
 
   const closeUpload = () => {
-    document.querySelector('.upload').style.display = 'none';
-    document.querySelector('.filter').style.display = 'none';
+    document.querySelector(".upload").style.display = "none";
+    document.querySelector(".filter").style.display = "none";
   };
 
   const openUpload = () => {
-    document.querySelector('.upload').style.display = 'grid';
-    document.querySelector('.filter').style.display = 'block';
+    document.querySelector(".upload").style.display = "grid";
+    document.querySelector(".filter").style.display = "block";
   };
 
-  const handleUpload = () => {
-    const imageName = `${image.name}${
-      Math.floor(Math.random() * (9999 - 1000)) + 1000
-    }`;
-    const uploadTask = storage.ref(`images/${imageName}`).put(image);
-    uploadTask.on(
-      'state_changed',
-      (snapshot) => {
-        const progress = Math.round(
-          (snapshot.bytesTransferred / snapshot.totalBytes) * 100
-        );
-        setProgress(progress);
-      },
+  const handleUpload = async () => {
+    if (!image) return;
+    setLoading(true);
 
-      (error) => {
-        console.log(error);
-        alert(error.message);
-      },
+    try {
+      const imageUrl = await uploadToImgbb(image);
+      await db.collection("posts").add({
+        timestamp: FieldValue.serverTimestamp(),
+        avatar:
+          user.photoURL ||
+          `https://avatars.dicebear.com/api/gridy/${user.email}.svg`,
+        caption: caption,
+        imageUrl: imageUrl,
+        email: user.email,
+        username: user.displayName || user.email.split("@")[0],
+      });
 
-      () => {
-        storage
-          .ref('images')
-          .child(imageName)
-          .getDownloadURL()
-          .then((url) => {
-            db.collection('posts').add({
-              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-              avatar:
-                user.photoURL ||
-                `https://avatars.dicebear.com/api/gridy/${user.email}.svg`,
-              caption: caption,
-              imageUrl: url,
-              email: user.email,
-              username: user.displayName || user.email.split('@')[0],
-            });
-            setProgress(0);
-            setCaption('');
-            setImage(null);
-            setFileName('');
-            setFile(null);
-            setshowDelete(false);
-            closeUpload();
-            document
-              .getElementById('root')
-              .scrollIntoView({ behavior: 'smooth' });
-          });
-      }
-    );
+      // Reset state
+      setCaption("");
+      setImage(null);
+      setFileName("");
+      setFilePreview(null);
+      setShowDelete(false);
+      closeUpload();
 
-    // console.log(setProgress)
-    // console.log(setCaption)
-    // console.log(setImage)
-    // console.log(setFileName)
-    // console.log(setFile)
-    // console.log('______________________________')
-    // console.log(file)
-    // console.log(fileName)
-    // console.log(caption)
-    // console.log (user)
-    // console.log(db)
+      document.getElementById("root").scrollIntoView({ behavior: "smooth" });
+    } catch (error) {
+      alert("Upload failed: " + error.message);
+    }
+
+    setLoading(false);
   };
 
   return (
     <>
-      <div className='addPostBtn' onClick={openUpload}>
-        <i className='fas fa-plus'></i>
+      <div className="addPostBtn" onClick={openUpload}>
+        <i className="fas fa-plus"></i>
       </div>
-      <div className='upload'>
-        <div className='uploadContent'>
-          {file && (
-            <>
-              <div className='postHeader'>
-                <h3 className='uploadPreview'>POST PREVIEW</h3>
-              </div>
 
-              <img className='postImage' src={file} alt={fileName} />
+      <div className="upload">
+        <div className="uploadContent">
+          {filePreview && (
+            <>
+              <div className="postHeader">
+                <h3 className="uploadPreview">POST PREVIEW</h3>
+              </div>
+              <img className="postImage" src={filePreview} alt={fileName} />
             </>
           )}
+
           <input
-            className='uploadCaption'
-            type='text'
-            placeholder='Enter a caption...'
-            onChange={(event) => setCaption(event.target.value)}
+            className="uploadCaption"
+            type="text"
+            placeholder="Enter a caption..."
             value={caption}
+            onChange={(e) => setCaption(e.target.value)}
           />
-          <div className='uploadButtons'>
-            <label htmlFor='file-upload' className='customFileUpload'>
-              <i className='fas fa-file-upload'></i> Upload Image
+
+          <div className="uploadButtons">
+            <label htmlFor="file-upload" className="customFileUpload">
+              <i className="fas fa-file-upload"></i> Upload Image
             </label>
             <input
-              id='file-upload'
-              type='file'
-              accept='image/*'
+              id="file-upload"
+              type="file"
+              accept="image/*"
               onChange={handleFileChange}
+              style={{ display: "none" }}
             />
+
             {showDelete && (
               <>
-                <div className='fileName'>{fileName}</div>
-                <div className='trashBtn' onClick={handleTrash}>
-                  <i className='fas fa-trash'></i>
+                <div className="fileName">{fileName}</div>
+                <div className="trashBtn" onClick={handleTrash}>
+                  <i className="fas fa-trash"></i>
                 </div>
               </>
             )}
           </div>
-          <progress
-            className='uploadProgress'
-            value={progress}
-            max='100'
-          ></progress>
+
           <button
-            type='submit'
-            disabled={!file && !caption}
+            type="submit"
+            disabled={!image || !caption || loading}
             onClick={handleUpload}
-            className='postButton'
+            className="postButton"
           >
-            Post
+            {loading ? "Posting..." : "Post"}
           </button>
-          <div className='closeBtn' onClick={closeUpload}>
-            <i className='fas fa-times'></i>
+
+          <div className="closeBtn" onClick={closeUpload}>
+            <i className="fas fa-times"></i>
           </div>
         </div>
       </div>
     </>
   );
 }
+
+

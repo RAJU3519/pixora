@@ -1,3 +1,5 @@
+//sr/pages/profile.js
+
 import React, { useEffect, useState } from 'react';
 import { db } from '../components/firebase';
 // import firebase from 'firebase';

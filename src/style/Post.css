@@ -1,98 +1,115 @@
 .post {
-    width: 100%;
-    max-width: 500px;
-    background-color: var(--grey);
-    border-radius: 5px;
-    border: 1px solid var(--icon-bg) ;
-    margin-bottom: 50px;
-    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  background-color: var(--grey);
+  border-radius: 10px;
+  border: 1px solid var(--icon-bg);
+  margin-bottom: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
 }
 
-.post a{
-    text-decoration: none;
-    color: var(--light);
+.post a {
+  text-decoration: none;
+  color: var(--light);
 }
 
 .postHeader {
-    display: flex;
-    align-items: center;
-    padding: 10px
+  display: flex;
+  align-items: center;
+  padding: 10px;
 }
 
 .avatar {
-    border-radius: 50%;
-    width: 40px;
-    margin: 5px 10px 5px 5px
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 10px;
 }
 
 .postImage {
-    width: 100%;
-    max-width: 480px;
-    max-height: 700px;
-    object-fit: cover;
-    border-top: 1px solid var(--icon-bg) ;
-    border-bottom: 1px solid var(--icon-bg) ;
+  width: 100%;
+  max-height: 700px;
+  object-fit: cover;
+  border-top: 1px solid var(--icon-bg);
+  border-bottom: 1px solid var(--icon-bg);
 }
 
-.postInteractionBar{
-    padding: 5px 10px;
-    text-align: left;
-    border-bottom: 1px solid var(--icon-bg) ;
+.postInteractionBar {
+  padding: 8px 12px;
+  text-align: left;
+  border-bottom: 1px solid var(--icon-bg);
+  display: flex;
+  gap: 16px;
 }
 
-.postInteractionItem{
-    padding: 0px 20px 0 0;
-    font-size: 24px;
+.postInteractionItem {
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--light);
+  transition: transform 0.2s;
 }
 
-.postHeart{
-    color: var(--purple);
+.postInteractionItem:hover {
+  transform: scale(1.1);
+}
+
+.postHeart {
+  color: var(--purple);
 }
 
 .postComments {
-    padding: 10px;
-    text-align: left;
-    font-size: 14px;
-    text-align: left;
-    word-wrap: break-word;
+  padding: 10px 12px;
+  font-size: 14px;
+  word-wrap: break-word;
 }
 
 .postCaption {
-    text-align: left;
-    padding: 0px;
+  margin: 4px 0;
 }
 
 .postMoreComments {
-    padding-top: 10px;
+  margin-top: 8px;
+  cursor: pointer;
+  color: var(--purple);
 }
 
 .postMoreComments:hover {
-    text-decoration: underline;
+  text-decoration: underline;
 }
 
 .postCommentsInput {
-    display: flex;
-    border-top: 1px solid var(--icon-bg) ;
-}
-
-.message {
-    text-align: center;
-    width: 100%;
-    padding: 10px;
+  display: flex;
+  border-top: 1px solid var(--icon-bg);
 }
 
 .postComment {
-    flex: 1;
-    border: none;
-    padding: 10px;
-    background-color: var(--grey);
+  flex: 1;
+  border: none;
+  padding: 12px;
+  background-color: var(--grey);
+  color: var(--light);
+  font-size: 14px;
 }
 
 .postCommentButton {
-    flex: 0;
-    cursor: pointer;
-    background-color: var(--grey);
-    border: none;
-    color: var(--purple);
-    padding: 10px;
+  background-color: var(--grey);
+  border: none;
+  color: var(--purple);
+  padding: 0 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.postCommentButton:disabled {
+  color: var(--icon-bg);
+  cursor: not-allowed;
+}
+
+.message {
+  text-align: center;
+  width: 100%;
+  padding: 10px;
 }

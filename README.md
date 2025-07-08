@@ -18,8 +18,9 @@ This project uses:
 <img src="shot/pixora.png" alt="Main UI" width="100%" />
 <br />
 
-<img src="shot/shot1.png" alt="Upload UI" width="49%" />
-<img src="shot/shot2.png" alt="Profile UI" width="49%" />
+<img src="shot/ss1.png" alt="Upload UI" width="49%" />
+<img src="shot/Shot2.png" alt="Profile UI" width="49%" />
+
 
 ---
 

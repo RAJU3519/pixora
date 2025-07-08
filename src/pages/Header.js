@@ -1,3 +1,5 @@
+// Header.js
+
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useStateValue } from "../components/StateProvider";
@@ -40,7 +42,7 @@ export default function Header() {
 	return (
 		<div className="header">
 			<Link className="link headerTitle" to="/">
-				<h1 className="headerLogo">instaapp</h1>
+				<h1 className="headerLogo">pixora</h1>
 			</Link>
 
 			<div className="headerSearchContainer">

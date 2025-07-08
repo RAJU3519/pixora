@@ -4,8 +4,13 @@
   align-items: center;
   padding: 20px;
 }
-.image{
+
+.image {
   margin: 10px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
 }
 
 .filter {
@@ -13,10 +18,11 @@
   display: none;
   width: 100%;
   height: 100vh;
-  filter: alpha(opacity=50);
-	opacity: 0.6;
+  opacity: 0.6;
   z-index: 1;
   position: fixed;
   top: 0;
   left: 0;
 }
+
+

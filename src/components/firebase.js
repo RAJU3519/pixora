@@ -1,17 +1,27 @@
-import firebase from "firebase";
+// src/firebase.js
 
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
+
+// Your fixed Firebase config
 const firebaseConfig = {
+  apiKey: "AIzaSyAAN3_BEYmRZS_rcsQbPmuzj3IbFDSnKG0",
+  authDomain: "pixora-clone.firebaseapp.com",
+  projectId: "pixora-clone",
+ storageBucket: "pixora-clone.appspot.com",
 
-	apiKey: "AIzaSyBD-2J5SPDb7s9p16XlhpSn53Tj5gJBfZ0",
-    authDomain: "instaapp-6f24c.firebaseapp.com",
-    projectId: "instaapp-6f24c",
-    storageBucket: "instaapp-6f24c.appspot.com",
-    messagingSenderId: "835644354742",
-    appId: "1:835644354742:web:744459ebddd47140c37617"
+  messagingSenderId: "667213325436",
+  appId: "1:667213325436:web:56aac60b33a123db1bd5f9"
 };
 
-export const firebaseApp = firebase.initializeApp(firebaseConfig);
+// Initialize Firebase
+const firebaseApp = firebase.initializeApp(firebaseConfig);
+
+// Export Firebase services
 export const db = firebaseApp.firestore();
 export const auth = firebase.auth();
 export const provider = new firebase.auth.GoogleAuthProvider();
-export const storage = firebase.storage()
+export const storage = firebase.storage();
+export const FieldValue = firebase.firestore.FieldValue;
