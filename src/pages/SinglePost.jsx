@@ -12,7 +12,8 @@ import {
   query,
 } from "firebase/firestore"
 import { db, FieldValue } from "../components/firebase"
-import { useStateValue } from "../components/stateprovider"
+//import { useStateValue } from "../components/stateprovider"
+import {useStateValue } from "../components/StateProvider"; 
 import "../style/SinglePost.css"
 
 export default function SinglePost() {
