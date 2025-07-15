@@ -1,0 +1,31 @@
+.footer {
+  height: 60px;
+  width: 100%;
+  background-color: var(--grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+  padding: 0 1rem;
+  box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer p {
+  margin: 0;
+  font-size: 14px;
+  color: var(--head-light);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.footer a {
+  color: var(--purple); /* ✅ Ensure this is defined */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer a:hover,
+.footer a:focus {
+  color: var(--head-light);
+  text-decoration: underline;
+}

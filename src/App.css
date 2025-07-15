@@ -1,0 +1,30 @@
+.posts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 1.5rem; /* spacing between posts */
+  max-width: 800px;
+  margin: auto;
+}
+
+.image {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+.image:hover {
+  transform: scale(1.01);
+}
+
+.filter {
+  background-color: rgba(0, 0, 0, 0.6); /* simplified */
+  display: none;
+  position: fixed;
+  inset: 0; /* shorthand for top, bottom, left, right = 0 */
+  z-index: 50;
+}

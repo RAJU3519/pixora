@@ -1,0 +1,74 @@
+.login {
+  min-height: calc(100vh - 113px); /* Adjusts for header+footer */
+  background-color: var(--dark);
+  margin: 20px 0;
+  display: grid;
+  place-items: center;
+  padding: 10px;
+}
+
+.loginContainer {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px 20px;
+  text-align: center;
+  background-color: var(--grey);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+
+.loginContainer form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.loginContainer button {
+  border: none;
+  width: 100%;
+  margin: 10px 0;
+  border-radius: 40px;
+  background-color: var(--purple);
+  padding: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  color: var(--white);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.loginContainer button:hover {
+  background-color: var(--purple-dark); /* ✅ See variable fix below */
+}
+
+.loginContainer .loginRegisterButton {
+  background-color: var(--input);
+  color: var(--theme);
+}
+
+.loginContainer h5 {
+  margin: 8px 0 4px;
+  text-align: left;
+  color: var(--head-light);
+  font-size: 14px;
+}
+
+.loginContainer input {
+  height: 35px;
+  margin-bottom: 15px;
+  padding: 6px 10px;
+  border: none;
+  border-radius: 5px;
+  color: var(--light);
+  background-color: var(--dark);
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.loginContainer p {
+  margin-top: 15px;
+  font-size: 12px;
+  color: var(--head-light);
+}
+
