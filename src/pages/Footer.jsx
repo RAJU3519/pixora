@@ -6,13 +6,14 @@ export default function Footer() {
     <footer id="footer" className="footer">
       <p>
         Built with 💚 React by{' '}
-        <a
-          href="https://github.com/rifkiandriyanto"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Raju Kumar
-        </a>
+      <a
+  href="https://github.com/RAJU3519"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  Raju Kumar
+</a>
+
       </p>
     </footer>
   )
