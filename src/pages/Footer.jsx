@@ -1,4 +1,3 @@
-import React from 'react'
 import '../style/Footer.css'
 
 export default function Footer() {
@@ -18,3 +17,4 @@ export default function Footer() {
     </footer>
   )
 }
+
