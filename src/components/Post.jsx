@@ -131,7 +131,7 @@ export default function Post({ postId, post, user }) {
         {comments.map((c, i) => (
           <p key={i} className="postCaption">
             <strong>
-              <Link className="commentLink" to={`/profile/${post.email}`}>
+              <Link className="commentLink" to={`/profile/${c.email}`}>
                 {c.username}
               </Link>
             </strong>{" "}
